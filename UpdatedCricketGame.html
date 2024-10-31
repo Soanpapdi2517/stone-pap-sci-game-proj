@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Sevillana&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        background-color: #85B0E3;
+
+        background-repeat: repeat;
+      }
+      h1 {
+        font-family: "Sevillana", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 50px;
+        /* background-image: url(https://www.shutterstock.com/shutterstock/videos/1069851100/thumb/3.jpg?ip=x480); */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 120px;
+        background-size: contain;
+        background-color: #85B0E3;
+      }
+      header,
+      main {
+        text-align: center;
+      }
+      #container {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSya86Tyir8jYqj_dyuQ0NG-IB-QGCXdq4Mgg&s);
+        background-size: contain;
+        background-repeat: round;
+        background-position: center;
+        height: 500px;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        /* top: 5vh; */
+        left: 33vw;
+
+        border-radius: 50%;
+      }
+      .btn {
+        height: 100px;
+        width: 100px;
+        border: 5px solid #463F44;
+        border-radius: 50%;
+        background-color: #fff002;
+        position: relative;
+        top: 15vh;
+        font-weight: 700;
+        padding: 5px;
+      }
+      #btn1 {
+        background-image: url(images/stone.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: rgb(255, 255, 255);
+      }
+      #btn2 {
+        background-image: url(images/paper.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: rgb(255, 255, 255);
+        background-position: right;
+      }
+      #btn3 {
+        background-image: url(images/scissor.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: rgb(255, 255, 255);
+      }
+    </style>
+    <title>Stone paper Scissor game</title>
+  </head>
+  <body>
+    <header><h1>Stone Paper scissor Game 3</h1></header>
+    <main>
+      <div id="container">
+        <button
+          onclick="
+        let computer_choice = gen_computer_choice();
+        element_name = ' stone';
+        let results = userChoiceCheck(computer_choice, 'stone');
+        showresults(computer_choice, 'stone', results);
+        "
+          class="btn"
+          id="btn1"
+        >
+          Stone
+        </button>
+        <button
+          onclick="
+        computer_choice = gen_computer_choice();
+        results = '';
+        element_name = ' paper';
+        results = userChoiceCheck(computer_choice, 'paper');
+        showresults(computer_choice, 'paper', results);
+        "
+          class="btn"
+          id="btn2"
+        >
+          Paper
+        </button>
+
+        <button
+          onclick="
+        computer_choice = gen_computer_choice();
+        element_name = ' scissor';
+        results = userChoiceCheck(computer_choice, 'scissor');
+        console.log(`computer choice is ${computer_choice}`);
+        showresults(computer_choice, 'scissor', results);
+        "
+          class="btn"
+          id="btn3"
+        >
+          scissor
+        </button>
+      </div>
+      <script>
+        let score = {
+          win: 0,
+          lose: 0,
+          tie: 0,
+        };
+        let buttonClick_times ={
+          Stone: 0,
+          Paper: 0,
+          Scissor :0,
+        };
+
+        const userChoiceMsg = "You have choosen";
+        function gen_computer_choice() {
+          let randomNumber = Math.random() * 3;
+          if (randomNumber > 0 && randomNumber <= 1) {
+            return "stone";
+          } else if (randomNumber > 1 && randomNumber <= 2) {
+            return "paper";
+          } else {
+            return "scissor";
+          }
+        }
+        function userChoiceCheck(computerMove, userMove) {
+          if (userMove === "stone") {
+            buttonClick_times.Stone++;
+            if (computerMove === "scissor") {
+              score.win += 1;
+              return "You won";
+            } else if (computerMove === "paper") {
+              score.lose += 1;
+              return "You lost";
+            } else {
+              score.tie += 1;
+              return `it's a tie`;
+            }
+          } else if (userMove === "paper") {
+            buttonClick_times.Paper++;
+            if (computerMove === "paper") {
+              score.tie += 1;
+              return "its tie";
+            } else if (computerMove === "scissor") {
+              score.lose += 1;
+              return "You lost";
+            } else {
+              score.win += 1;
+              return `you won`;
+            }
+          }
+
+          if (userMove === "scissor") {
+            buttonClick_times.Scissor++;
+            if (computerMove === "paper") {
+              score.win += 1;
+              return "you won";
+            } else if (computerMove === "stone") {
+              score.lose += 1;
+              return "You lost";
+            } else {
+              score.tie += 1;
+              return `it's a tie`;
+            }
+          }
+        }
+        function showresults(computerMove, userMove, result) {
+          alert(
+            `You have chosen ${userMove}, 
+            Computer have chosen ${computerMove} &
+            your result is ${result}
+            
+            Won: ${score.win}, lost: ${score.lose}, Tie: ${score.tie}
+            Total rounds ${score.win + score.lose + score.tie}`
+          );
+          console.log(buttonClick_times);
+        }
+      </script>
+    </main>
+  </body>
+</html>
