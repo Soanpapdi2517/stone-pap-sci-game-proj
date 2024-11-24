@@ -11,7 +11,10 @@
               };
 
           score.displayscore = function () {
-            return `won 🏆 ${this.win}, lose👎🏼 ${this.lose}, tie❓ ${this.tie}
+            return `
+            won 🏆 ${this.win}
+            lose👎🏼 ${this.lose}
+            tie❓ ${this.tie}
             total rounds: ${this.win + this.lose + this.tie}`;
           };
           showresults();
