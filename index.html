@@ -7,12 +7,10 @@
       href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Sevillana&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Stone paper Scissor game</title>
   </head>
   <body>
-    
-    
     <header><h1>Stone Paper scissor Game</h1></header>
     <main>
       <div id="container">
@@ -21,12 +19,12 @@
         let computer_choice = gen_computer_choice();
         element_name = ' stone';
         let results = userChoiceCheck(computer_choice, 'stone');
-        showresults(computer_choice, 'stone', results);
+        showresults(computer_choice, '🪨', results);
         "
           class="btn"
           id="btn1"
         >
-        <img class="image" id="stone" src="images/stone.png" alt="Stone Button">
+          🪨
         </button>
         <button
           onclick="
@@ -34,125 +32,38 @@
         results = '';
         element_name = ' paper';
         results = userChoiceCheck(computer_choice, 'paper');
-        showresults(computer_choice, 'paper', results);
+        showresults(computer_choice, '📄', results);
         "
           class="btn"
           id="btn2"
         >
-        <img class="image" id="paper" src="images/paper.png" alt="Paper Button">
-
+          📄
         </button>
 
-        <button 
-        onclick="
+        <button
+          onclick="
         computer_choice = gen_computer_choice();
         element_name = ' scissor';
         results = userChoiceCheck(computer_choice, 'scissor');
         console.log(`computer choice is ${computer_choice}`);
-        showresults(computer_choice, 'scissor', results);
+        showresults(computer_choice, '✂️', results);
         "
           class="btn"
           id="btn3"
         >
-        <img class="image" id="scissor" src="images/scissor.png" alt="Scissor Button">
+          ✂️
         </button>
-        <button
+        
+      </div>
+      <button
           onclick="localStorage.clear();
         resetscore();"
-          class="btn"
           id="reset-btn"
         >
-          Reset
+          ↺
         </button>
-      </div>
       <h3 class="result-banner"></h3>
-      <script>
-        let scorestreak = localStorage.getItem("Score");
-        let score;
-        resetscore(scorestreak);
-        function resetscore(scorestreak) {
-          score = scorestreak
-            ? JSON.parse(scorestreak)
-            : {
-                win: 0,
-                lose: 0,
-                tie: 0,
-              };
-
-          score.displayscore = function () {
-            return `won: ${this.win}, lose: ${this.lose}, tie: ${this.tie}
-            total rounds: ${this.win + this.lose + this.tie}`;
-          };
-          showresults();
-        }
-        let buttonClick_times = {
-          Stone: 0,
-          Paper: 0,
-          Scissor: 0,
-        };
-
-        const userChoiceMsg = "You have choosen";
-        function gen_computer_choice() {
-          let randomNumber = Math.random() * 3;
-          if (randomNumber > 0 && randomNumber <= 1) {
-            return "stone";
-          } else if (randomNumber > 1 && randomNumber <= 2) {
-            return "paper";
-          } else {
-            return "scissor";
-          }
-        }
-        function userChoiceCheck(computerMove, userMove) {
-          if (userMove === "stone") {
-            buttonClick_times.Stone++;
-            if (computerMove === "scissor") {
-              score.win += 1;
-              return "You won";
-            } else if (computerMove === "paper") {
-              score.lose += 1;
-              return "You lost";
-            } else {
-              score.tie += 1;
-              return `it's a tie`;
-            }
-          } else if (userMove === "paper") {
-            buttonClick_times.Paper++;
-            if (computerMove === "paper") {
-              score.tie += 1;
-              return "its tie";
-            } else if (computerMove === "scissor") {
-              score.lose += 1;
-              return "You lost";
-            } else {
-              score.win += 1;
-              return `you won`;
-            }
-          }
-
-          if (userMove === "scissor") {
-            buttonClick_times.Scissor++;
-            if (computerMove === "paper") {
-              score.win += 1;
-              return "you won";
-            } else if (computerMove === "stone") {
-              score.lose += 1;
-              return "You lost";
-            } else {
-              score.tie += 1;
-              return `it's a tie`;
-            }
-          }
-        }
-        function showresults(computerMove, userMove, result) {
-          localStorage.setItem("Score", JSON.stringify(score));
-          document.querySelector(
-            ".result-banner"
-          ).innerText = userMove === undefined && computerMove === undefined && result ===undefined? `${score.displayscore()}` :`You have chosen: ${userMove}
-          Computer have chosen: ${computerMove}
-          your result is: ${result}
-          ${score.displayscore()}`;
-        }
-      </script>
+      <script src="main.js"></script>
     </main>
   </body>
 </html>
