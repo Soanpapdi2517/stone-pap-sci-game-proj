@@ -18,7 +18,7 @@
           onclick="
         let computer_choice = gen_computer_choice();
         element_name = ' stone';
-        let results = userChoiceCheck(computer_choice, 'stone');
+        let results = userChoiceCheck(computer_choice, '🪨');
         showresults(computer_choice, '🪨', results);
         "
           class="btn"
@@ -31,7 +31,7 @@
         computer_choice = gen_computer_choice();
         results = '';
         element_name = ' paper';
-        results = userChoiceCheck(computer_choice, 'paper');
+        results = userChoiceCheck(computer_choice, '📄');
         showresults(computer_choice, '📄', results);
         "
           class="btn"
@@ -44,7 +44,7 @@
           onclick="
         computer_choice = gen_computer_choice();
         element_name = ' scissor';
-        results = userChoiceCheck(computer_choice, 'scissor');
+        results = userChoiceCheck(computer_choice, '✂️');
         console.log(`computer choice is ${computer_choice}`);
         showresults(computer_choice, '✂️', results);
         "
